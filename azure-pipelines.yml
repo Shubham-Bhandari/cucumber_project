@@ -1,0 +1,36 @@
+#@Owner: Avadoot Yadav 
+#type: Starter pipeline
+#Add steps that build, run tests, deploy, and more:
+#Full yaml config options:  https://aka.ms/yaml
+
+
+trigger:
+    branches:
+      include:
+      - master 
+      
+    paths:
+      exclude:
+      - additions.md
+      - ChangeLog.Txt
+      - README.md
+jobs:
+  - job: 'TestRun_in_Windows' #Name of Job
+    pool:
+      vmImage: 'windows-latest' 
+
+    steps:
+    - task: Maven@3
+      inputs:
+        mavenPomFile: 'pom.xml'
+        goals: 'verify sonar:sonar test'
+        options: '-DGRID_TYPE="NO_GRID"'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.8'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: true
+        sqMavenPluginVersionChoice: 'pom'
