@@ -1,5 +1,6 @@
 package com.crm.qa.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,7 +23,7 @@ public class LoginPage extends TestBase{
 	@FindBy(xpath="//button[contains(text(),'Sign Up')]")
 	WebElement signUpBtn;
 	
-	@FindBy(xpath="//img[contains(@class,'img-responsive')]")
+	@FindBy(xpath="//a[@class='brand-name']")
 	WebElement crmLogo;
 	
 	//Initializing the Page Objects:
@@ -40,6 +41,8 @@ public class LoginPage extends TestBase{
 	}
 	
 	public HomePage login(String un, String pwd){
+		driver.findElement(By.xpath("//*[text()='Log In']")).click();
+		driver.findElement(By.xpath("//*[text()='Classic CRM']")).click();
 		username.sendKeys(un);
 		password.sendKeys(pwd);
 		//loginBtn.click();
