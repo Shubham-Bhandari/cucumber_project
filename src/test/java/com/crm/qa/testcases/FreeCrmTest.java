@@ -34,13 +34,13 @@ public class FreeCrmTest {
         System.out.println("title is: " + title);
         getRunTimeInfoMessage("info", title);
 
-        if (title.equals("Free CRM software in the cloud powers sales and customer serviceQQQQ")) {
+        if (title.equals("Free CRM #1 cloud software for any business large or small")) {
             getRunTimeInfoMessage("info", "title is correct!! YAY!!!");
             Assert.assertTrue(true);
         } else {
             getRunTimeInfoMessage("error", "title is not correct!! BUG BUG BUG!!!");
             takeScreenshot("freecrmloginpage");
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
     }
